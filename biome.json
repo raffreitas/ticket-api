@@ -7,12 +7,15 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-			"security": {
-				"recommended": true
+			"complexity": {
+				"noStaticOnlyClass": "off"
 			},
-			"style": {
-				"recommended": true
-			}
+			"nursery": {
+				"noUnusedImports": "error"
+			},
+      "correctness": {
+        "noUnusedVariables": "error"
+      }
 		}
 	},
 	"formatter": {

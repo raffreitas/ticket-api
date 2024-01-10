@@ -4,7 +4,10 @@
 	"description": "ticket-api",
 	"main": "index.js",
 	"scripts": {
-		"start:dev": "tsx watch ./src"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint:fix": "biome lint --apply ",
+    "format": "biome format ./src ./test"
 	},
 	"keywords": [],
 	"author": "Rafael Freitas",
