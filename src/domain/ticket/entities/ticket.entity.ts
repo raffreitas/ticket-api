@@ -5,27 +5,34 @@ import { User } from "@/domain/user/entities/user.entity";
 import { ServiceStep } from "./service-step";
 import { ServiceTree } from "./service-tree.entity";
 
+export enum TicketStatus {
+  PENDENT = "PENDENT",
+  IN_PROGRESS = "IN_PROGRESS",
+  DONE = "DONE",
+}
 export interface TicketProps {
-	serviceTree: ServiceTree;
-	steps: ServiceStep;
-	requester: User;
-	currentAttendant: User;
-	createdAt: Date;
+  serviceTree: ServiceTree;
+  status: TicketStatus;
+  steps: ServiceStep;
+  requester: User;
+  currentAttendant: User;
+  createdAt: Date;
 }
 
 export class Ticket extends Entity<TicketProps> {
-	static create(
-		props: Optional<TicketProps, "createdAt">,
-		id?: UniqueEntityID,
-	) {
-		const ticket = new Ticket(
-			{
-				...props,
-				createdAt: props.createdAt ?? new Date(),
-			},
-			id,
-		);
+  static create(
+    props: Optional<TicketProps, "createdAt">,
+    id?: UniqueEntityID,
+  ) {
+    const ticket = new Ticket(
+      {
+        ...props,
+        status: props.status ?? TicketStatus.PENDENT,
+        createdAt: props.createdAt ?? new Date(),
+      },
+      id,
+    );
 
-		return ticket;
-	}
+    return ticket;
+  }
 }

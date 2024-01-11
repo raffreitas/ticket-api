@@ -8,7 +8,7 @@ export interface UserProps {
 	name: string;
 	department: Department;
 	position: Position;
-	active: boolean;
+	active?: boolean;
 	createdAt: Date;
 }
 
