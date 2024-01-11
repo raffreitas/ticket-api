@@ -4,24 +4,28 @@ import { Optional } from "@/domain/@shared/types";
 import { Question } from "./question.entity";
 
 export interface AnswerProps {
-	question: Question;
-	value: unknown;
-	createdAt: Date;
+  question: Question;
+  value: unknown;
+  createdAt: Date;
 }
 
 export class Answer extends Entity<AnswerProps> {
-	static create(
-		props: Optional<AnswerProps, "createdAt">,
-		id?: UniqueEntityID,
-	) {
-		const answer = new Answer(
-			{
-				...props,
-				createdAt: props.createdAt ?? new Date(),
-			},
-			id,
-		);
+  public get question() {
+    return this._props.question;
+  }
 
-		return answer;
-	}
+  static create(
+    props: Optional<AnswerProps, "createdAt">,
+    id?: UniqueEntityID,
+  ) {
+    const answer = new Answer(
+      {
+        ...props,
+        createdAt: props.createdAt ?? new Date(),
+      },
+      id,
+    );
+
+    return answer;
+  }
 }
